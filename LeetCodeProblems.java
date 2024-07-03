@@ -196,6 +196,41 @@ function compress(chars) {
     return writeIndex;
 }
 
+// 1679. Max Number of K-Sum Pairs
+
+
+// You are given an integer array nums and an integer k.
+
+// In one operation, you can pick two numbers from the array whose sum equals k and remove them from the array.
+
+// Return the maximum number of operations you can perform on the array.
+
+ 
+
+var maxOperations = function(nums, k) {
+    let count = 0;
+    let numCount = new Map();
+
+    // Sayıların sayısını ve indexlerini bir haritada saklayalım
+    for (let i = 0; i < nums.length; i++) {
+        let num = nums[i];
+        let complement = k - num;
+
+        if (numCount.has(complement) && numCount.get(complement).length > 0) {
+            count++;
+            numCount.get(complement).pop();
+        } else {
+            if (!numCount.has(num)) {
+                numCount.set(num, []);
+            }
+            numCount.get(num).push(i);
+        }
+    }
+
+    return count;
+};
+
+
 
   
 
