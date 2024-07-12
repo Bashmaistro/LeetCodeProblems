@@ -315,6 +315,46 @@ function longestSubarray(nums: number[]): number {
 
     return max_length;
 }
+/**
+ * 11. Container With Most Water
+ * Solved
+ * Medium
+ * Topics
+ * Companies
+ * Hint
+ * You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+ * 
+ * Find two lines that together with the x-axis form a container, such that the container contains the most water.
+ * 
+ * Return the maximum amount of water a container can store.
+ * 
+ * Notice that you may not slant the container.
+ */
+
+
+
+function maxArea(height: number[]): number {
+    let maxContainer = 0;
+    let leftPointer = 0;
+    let rightPointer = height.length - 1;
+
+    while (leftPointer < rightPointer) {
+        const currentHeight = Math.min(height[leftPointer], height[rightPointer]);
+        const width = rightPointer - leftPointer;
+        const currentArea = currentHeight * width;
+
+        maxContainer = Math.max(maxContainer, currentArea);
+
+        
+        if (height[leftPointer] < height[rightPointer]) {
+            leftPointer++;
+        } else {
+            rightPointer--;
+        }
+    }
+
+    return maxContainer;
+};
 
 
 
